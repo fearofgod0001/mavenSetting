@@ -37,5 +37,7 @@ public interface DataDAO {
     
     public List<DataVO> selectScheduleData();
     
+    public int inputScheduleData();
+    
 }
 

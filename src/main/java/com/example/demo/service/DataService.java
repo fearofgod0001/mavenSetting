@@ -16,4 +16,8 @@ public class DataService {
 	public List<DataVO> selectScheduleData(){
 		return dataDAO.selectScheduleData();
 	}
+	
+	public int inputScheduleData(){
+		return dataDAO.inputScheduleData();
+	}
 }

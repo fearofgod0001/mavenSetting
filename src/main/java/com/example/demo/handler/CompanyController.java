@@ -27,7 +27,7 @@ public class CompanyController {
     
     @GetMapping("/api/v1/calendar/scadule")
     public List<DataVO>getAll() {
-    	System.out.println("여기는 컨트롤러 전체 가져오기" );
+    	System.out.println("여기는 컨트롤러 DAO쿼리문 방식" );
         return dataDAO.getAll();
     }
     
@@ -49,10 +49,17 @@ public class CompanyController {
         return dataDAO.update(dataVO);
     }
     
+//  컨트롤러 Mapper 방식
     @GetMapping("/api/v1/calendar/testselect")
     public List<DataVO> selectScheduleData(){
-		return dataService.selectScheduleData();
-    	
+    	System.out.println("여기는 컨트롤러 mapper방식 " );
+		return dataService.selectScheduleData();    	
+    }
+    
+    @PostMapping("/api/v1/calendar/testinputdate")
+    public int inputScheduleData(@RequestBody DataVO dataVO) {
+    	System.out.println(dataVO.getUser_id());
+        return 1;
     }
 
 }
