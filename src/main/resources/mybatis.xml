@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.DataDAO">
+
+
+	<resultMap id="pageMap" type="com.example.demo.vo.DataVO">
+		<result property="user_id" column="user_id" />
+		<result property="todo_memo" column="todo_memo" />		
+		<result property="todo_date" column="todo_date" />
+	</resultMap>
+	
+	<select id="selectScheduleData"  parameterType="map" resultMap="pageMap">
+		SELECT user_id, todo_memo, TO_CHAR(todo_date, 'YYYY-MM-DD') AS todo_date FROM scheduleinfo
+	</select>
+
+	
+</mapper>
