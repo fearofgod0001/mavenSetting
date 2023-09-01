@@ -3,9 +3,9 @@
 <mapper namespace="com.example.demo.dao.DataDAO">
 
 
-	<resultMap id="pageMap" type="com.example.demo.vo.DataVO">
+	<resultMap id="pageMap" type="com.mongodb.BasicDBObject">
 		<result property="user_id" column="user_id" />
-		<result property="todo_memo" column="todo_memo" />		
+		<result property="todo_memo" column="todo_memo" jdbcType="CLOB" javaType="java.lang.String"/>		
 		<result property="todo_date" column="todo_date" />
 	</resultMap>
 	

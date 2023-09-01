@@ -8,6 +8,7 @@ spring:
     password: TIGER
     driver-class-name: oracle.jdbc.driver.OracleDriver
 
+
 mybatis:
   configuration:
     multiple-result-sets-enabled: false
