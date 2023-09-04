@@ -14,6 +14,7 @@ public class DataService {
 	private DataDAO dataDAO;
 	
 	public List<DBObject> selectScheduleData(){
+		System.out.println(dataDAO.selectScheduleData());
 		return dataDAO.selectScheduleData();
 	}
 	

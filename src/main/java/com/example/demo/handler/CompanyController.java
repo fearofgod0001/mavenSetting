@@ -54,12 +54,13 @@ public class CompanyController {
 //  컨트롤러 Mapper 방식    
     @GetMapping("/api/v1/calendar/testselect")
     public  ResponseEntity<?> selectScheduleData(){
-    	System.out.println("여기는 컨트롤러 mapper방식 " );
+    	System.out.println("여기는 컨트롤러 mapper방식 testselect" );
 		return ResponseEntity.ok(dataService.selectScheduleData());    	
     }
     
     @PostMapping("/api/v1/calendar/testinputdate")
     public ResponseEntity<?> inputScheduleData(@RequestBody  Map<String, Object> bodyParam) {
+    	System.out.println(bodyParam);
     	Map<String,Object> param = (Map<String,Object>)bodyParam.get("param");	
      	System.out.println("컨트롤러 파람 : " + param);
     	dataService.inputScheduleData(param);
