@@ -3,6 +3,7 @@ package com.example.demo.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -15,6 +16,8 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.vo.DataVO;
+import com.mongodb.DBObject;
+
 @Repository("com.example.demo.dao.DataDAO")
 @Mapper
 public interface DataDAO {
@@ -35,9 +38,18 @@ public interface DataDAO {
     @Update("UPDATE scheduleinfo SET todo_memo=#{dataVO.todo_memo} WHERE user_id=#{dataVO.user_id} and todo_date=#{dataVO.todo_date}")
     int update(@Param("dataVO") DataVO dataVO);
     
-    public List<DataVO> selectScheduleData();
+    //xml방식
     
-    public int inputScheduleData();
+    public List<DBObject> selectScheduleData();
     
+    public int inputScheduleData(Map<String,Object> param);
+    
+    public int deleteScheduleData(Map<String,Object> param);
+    
+    public int updateScheduleData(Map<String,Object> param);
+    
+    
+    
+   
 }
 

@@ -6,7 +6,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521:XE
     username: SCOTT
     password: TIGER
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: oracle.jdbc.OracleDriver
 
 
 mybatis:

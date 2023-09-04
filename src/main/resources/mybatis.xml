@@ -7,11 +7,30 @@
 		<result property="user_id" column="user_id" />
 		<result property="todo_memo" column="todo_memo" jdbcType="CLOB" javaType="java.lang.String"/>		
 		<result property="todo_date" column="todo_date" />
+		<result property="calender_id" column="calender_id" />
 	</resultMap>
 	
 	<select id="selectScheduleData"  parameterType="map" resultMap="pageMap">
-		SELECT user_id, todo_memo, TO_CHAR(todo_date, 'YYYY-MM-DD') AS todo_date FROM scheduleinfo
+		SELECT user_id, todo_memo, TO_CHAR(todo_date, 'YYYY-MM-DD') AS todo_date , calender_id FROM scheduleinfo
 	</select>
 
+	<insert id="inputScheduleData" parameterType="map">	
+		INSERT INTO scheduleinfo(user_id, todo_memo, todo_date,calender_id)
+		VALUES(#{user_id}, #{todo_memo}, #{todo_date}, calId_sequence.NEXTVAL)	
+	</insert>
 	
+	<update id="updateScheduleData" parameterType="map">
+		UPDATE scheduleinfo
+		 SET
+			todo_memo = #{todo_memo}
+			WHERE user_id = #{user_id}
+			AND todo_date=#{todo_date}
+	</update>
+	
+	<delete id="deleteScheduleData" parameterType="map">
+		DELETE FROM scheduleinfo
+		WHERE user_id = #{user_id}
+		AND DBMS_LOB.COMPARE(todo_memo, #{todo_memo}) = 0
+		AND todo_date=#{todo_date}
+	</delete>
 </mapper>
