@@ -4,19 +4,21 @@
 
 
 	<resultMap id="pageMap" type="com.mongodb.BasicDBObject">
-		<result property="user_id" column="user_id" />
-		<result property="todo_memo" column="todo_memo" jdbcType="CLOB" javaType="java.lang.String"/>		
-		<result property="todo_date" column="todo_date" />
-		<result property="calender_id" column="calender_id" />
+		<result property="id" column="id" />
+		<result property="title" column="title" javaType="java.lang.String"/>		
+		<result property="start" column="start"/>
+		<result property="end" column="end"/>
+		<result property="memo" column="memo" jdbcType="CLOB" javaType="java.lang.String"/>		
+
 	</resultMap>
 	
 	<select id="selectScheduleData"  parameterType="map" resultMap="pageMap">
-		SELECT user_id, todo_memo, TO_CHAR(todo_date, 'YYYY-MM-DD') AS todo_date , calender_id FROM scheduleinfo
+		SELECT id, title, TO_CHAR("start", 'YYYY-MM-DD') AS "start", TO_CHAR("end", 'YYYY-MM-DD') AS "end", memo FROM scheduleinfo
 	</select>
 
 	<insert id="inputScheduleData" parameterType="map">	
-		INSERT INTO scheduleinfo(user_id, todo_memo, todo_date,calender_id)
-		VALUES(#{user_id}, #{todo_memo}, #{todo_date}, calId_sequence.NEXTVAL)	
+		INSERT INTO scheduleinfo(id, title, "start","end")
+		VALUES(calId_sequence.NEXTVAL, #{title}, #{start}, #{end})	
 	</insert>
 	
 	<update id="updateScheduleData" parameterType="map">
