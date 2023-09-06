@@ -6,8 +6,8 @@
 	<resultMap id="pageMap" type="com.mongodb.BasicDBObject">
 		<result property="id" column="id" />
 		<result property="title" column="title" javaType="java.lang.String"/>		
-		<result property="start" column="start"/>
-		<result property="end" column="end"/>
+		<result property="start" column="start" />
+		<result property="end" column="end" />
 		<result property="memo" column="memo" jdbcType="CLOB" javaType="java.lang.String"/>		
 
 	</resultMap>
@@ -24,9 +24,8 @@
 	<update id="updateScheduleData" parameterType="map">
 		UPDATE scheduleinfo
 		 SET
-			todo_memo = #{todo_memo}
-			WHERE user_id = #{user_id}
-			AND todo_date=#{todo_date}
+			"start" = #{start} , "end" = #{end}
+			WHERE id = #{id}
 	</update>
 	
 	<delete id="deleteScheduleData" parameterType="map">

@@ -68,8 +68,9 @@ public class CompanyController {
     }
     
     @PostMapping("/api/v1/calendar/testupdatedate")
-    public ResponseEntity<?> updateScheduleData(@RequestBody  Map<String, Object> bodyParam) {
+    public ResponseEntity<?> updateScheduleData(@RequestBody  Map<String, Object> bodyParam) {    
     	Map<String,Object> param = (Map<String,Object>)bodyParam.get("param");	
+    	System.out.println("컨트롤러 업데이트 파람 값 : " + param);
     	dataService.updateScheduleData(param);
         return ResponseEntity.ok(bodyParam);
     }
