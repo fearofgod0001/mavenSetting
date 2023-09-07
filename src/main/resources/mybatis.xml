@@ -17,8 +17,8 @@
 	</select>
 
 	<insert id="inputScheduleData" parameterType="map">	
-		INSERT INTO scheduleinfo(id, title, "start","end")
-		VALUES(calId_sequence.NEXTVAL, #{title}, #{start}, #{end})	
+		INSERT INTO scheduleinfo(id, title, "start","end",memo)
+		VALUES(calId_sequence.NEXTVAL, #{title}, #{start}, #{end},#{memo})	
 	</insert>
 	
 	<update id="updateScheduleData" parameterType="map">
@@ -30,8 +30,7 @@
 	
 	<delete id="deleteScheduleData" parameterType="map">
 		DELETE FROM scheduleinfo
-		WHERE user_id = #{user_id}
-		AND DBMS_LOB.COMPARE(todo_memo, #{todo_memo}) = 0
-		AND todo_date=#{todo_date}
+		WHERE id = #{id}
+
 	</delete>
 </mapper>
