@@ -13,18 +13,18 @@
 	</resultMap>
 	
 	<select id="selectScheduleData"  parameterType="map" resultMap="pageMap">
-		SELECT id, title, TO_CHAR("start", 'YYYY-MM-DD') AS "start", TO_CHAR("end", 'YYYY-MM-DD') AS "end", memo FROM scheduleinfo
+		SELECT id, title, TO_CHAR("start", 'YYYY-MM-DD HH24:MI') AS "start", TO_CHAR("end", 'YYYY-MM-DD HH24:MI') AS "end", memo FROM scheduleinfo
 	</select>
 
 	<insert id="inputScheduleData" parameterType="map">	
 		INSERT INTO scheduleinfo(id, title, "start","end",memo)
-		VALUES(calId_sequence.NEXTVAL, #{title}, #{start}, #{end},  #{memo})	
+		VALUES(calId_sequence.NEXTVAL, #{title}, TO_DATE(#{start},'YYYY-MM-DD HH24:MI'), TO_DATE(#{end},'YYYY-MM-DD HH24:MI'),  #{memo})	
 	</insert>
 	
 	<update id="updateScheduleData" parameterType="map">
 		UPDATE scheduleinfo
 		 SET
-			"start" = #{start} , "end" = #{end}
+			"start" =TO_DATE(#{start},'YYYY-MM-DD HH24:MI') , "end" = TO_DATE(#{end},'YYYY-MM-DD HH24:MI')
 			WHERE id = #{id}
 	</update>
 	
