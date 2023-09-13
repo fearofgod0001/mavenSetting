@@ -4,33 +4,36 @@
 
 
 	<resultMap id="pageMap" type="com.mongodb.BasicDBObject">
-		<result property="id" column="id" />
-		<result property="title" column="title" javaType="java.lang.String"/>		
-		<result property="start" column="start" />
-		<result property="end" column="end" />
-		<result property="memo" column="memo" jdbcType="CLOB" javaType="java.lang.String"/>		
+		<result property="id" column="CALELDAR_ID" />
+		<result property="user_id" column=" USER_ID" />
+		<result property="title" column="TITLE" javaType="java.lang.String"/>		
+		<result property="allday" column="ALLDAY" javaType="java.lang.String"/>	
+		<result property="start" column="START_DATE" />
+		<result property="end" column="END_DATE" />
+		<result property="memo" column="MEMO" jdbcType="CLOB" javaType="java.lang.String"/>		
 
 	</resultMap>
 	
 	<select id="selectScheduleData"  parameterType="map" resultMap="pageMap">
-		SELECT id, title, TO_CHAR("start", 'YYYY-MM-DD HH24:MI') AS "start", TO_CHAR("end", 'YYYY-MM-DD HH24:MI') AS "end", memo FROM scheduleinfo
+		SELECT CALELDAR_ID, TITLE,ALLDAY, TO_CHAR(START_DATE, 'YYYY-MM-DD HH24:MI') AS START_DATE, TO_CHAR(END_DATE, 'YYYY-MM-DD HH24:MI') AS END_DATE, MEMO FROM SCHEDULEINFO
 	</select>
 
 	<insert id="inputScheduleData" parameterType="map">	
-		INSERT INTO scheduleinfo(id, title, "start","end",memo)
-		VALUES(calId_sequence.NEXTVAL, #{title}, TO_DATE(#{start},'YYYY-MM-DD HH24:MI'), TO_DATE(#{end},'YYYY-MM-DD HH24:MI'),  #{memo})	
+		INSERT INTO SCHEDULEINFO(CALELDAR_ID ,TITLE, ALLDAY, START_DATE, END_DATE, MEMO)
+		VALUES(calId_sequence.NEXTVAL, #{title}, #{allday}, TO_DATE(#{start},'YYYY-MM-DD HH24:MI'), TO_DATE(#{end},'YYYY-MM-DD HH24:MI'),  #{memo})	
 	</insert>
 	
 	<update id="updateScheduleData" parameterType="map">
-		UPDATE scheduleinfo
+		UPDATE SCHEDULEINFO
 		 SET
-			"start" =TO_DATE(#{start},'YYYY-MM-DD HH24:MI') , "end" = TO_DATE(#{end},'YYYY-MM-DD HH24:MI')
-			WHERE id = #{id}
+		 	ALLDAY = #{allday},
+			START_DATE = TO_DATE(#{start},'YYYY-MM-DD HH24:MI') , END_DATE = TO_DATE(#{end},'YYYY-MM-DD HH24:MI')
+			WHERE CALELDAR_ID = #{id}
 	</update>
 	
 	<delete id="deleteScheduleData" parameterType="map">
-		DELETE FROM scheduleinfo
-		WHERE id = #{id}
+		DELETE FROM SCHEDULEINFO
+		WHERE CALELDAR_ID = #{id}
 
 	</delete>
 </mapper>
