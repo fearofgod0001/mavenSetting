@@ -26,8 +26,9 @@
 	<update id="updateScheduleData" parameterType="map">
 		UPDATE SCHEDULEINFO
 		 SET
-		 	ALLDAY = #{allday},
-			START_DATE = TO_DATE(#{start},'YYYY-MM-DD HH24:MI') , END_DATE = TO_DATE(#{end},'YYYY-MM-DD HH24:MI')
+		 	TITLE = #{title}, ALLDAY = #{allday}, 
+			START_DATE = TO_DATE(#{start},'YYYY-MM-DD HH24:MI') , END_DATE = TO_DATE(#{end},'YYYY-MM-DD HH24:MI'),
+			MEMO = #{memo}
 			WHERE CALELDAR_ID = #{id}
 	</update>
 	
