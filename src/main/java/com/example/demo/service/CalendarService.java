@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.CalendarDAO;
 import com.mongodb.DBObject;
 
-@Service("com.example.demo.service.CalendarService")
+@Service("com.example.demo.service.DataService")
 public class CalendarService {
 	@Autowired
 	private CalendarDAO calendarDAO;

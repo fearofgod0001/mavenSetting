@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.vo.DataVO;
 import com.mongodb.DBObject;
 
-@Repository("com.example.demo.dao.CalendarDAO")
+@Repository("com.example.demo.dao.DataDAO")
 @Mapper
 public interface CalendarDAO {
     @Insert("INSERT INTO scheduleinfo(user_id, todo_memo, todo_date) VALUES(#{dataVO.user_id}, #{dataVO.todo_memo}, #{dataVO.todo_date})")
